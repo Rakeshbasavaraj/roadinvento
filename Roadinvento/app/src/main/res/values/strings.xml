@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Roadinvento</string>
+
+    <string-array name="Chainage">
+        <item>Select Chainage Value</item>
+        <item>10</item>
+        <item>15</item>
+        <item>30</item>
+        <item>50</item>
+        <item>100</item>
+
+    </string-array>
+</resources>
