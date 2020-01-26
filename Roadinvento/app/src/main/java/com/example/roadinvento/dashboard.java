@@ -20,15 +20,17 @@ public class dashboard extends AppCompatActivity implements AdapterView.OnItemSe
     TextView uname,phone;
     dataBaseStore mydb;
     EditText  RoadName, Latitude_Longitude_StartPoint, Latitude_Longitude_EndPoint,AreaName, DistrictName, StateName, LandMark, PavementType;
-
+    Spinner spinner;
     Button next;
+    String text;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        Spinner spinner = findViewById(R.id.ChainageSetting);
+        spinner = (Spinner) findViewById(R.id.ChainageSetting);
         Latitude_Longitude_StartPoint = (EditText) findViewById(R.id.Latitude_Longitude_StartPoint);
         Latitude_Longitude_EndPoint = (EditText) findViewById(R.id.Latitude_Longitude_EndPoint);
         RoadName = (EditText) findViewById(R.id.RoadName);
@@ -44,15 +46,15 @@ public class dashboard extends AppCompatActivity implements AdapterView.OnItemSe
 
 
 
-
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Chainage, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
         mydb = new dataBaseStore(this);
         uname = (TextView) findViewById(R.id.uname);
         Intent intent = getIntent();
-        String pid = intent.getStringExtra("message");
+        final String pid = intent.getStringExtra("message");
         /*uname.setText(pid);*/
         viewdata(pid);
         next.setOnClickListener(
@@ -60,6 +62,7 @@ public class dashboard extends AppCompatActivity implements AdapterView.OnItemSe
                     @Override
                     public void onClick(View v) {
                         vl();
+
                         Toast.makeText(dashboard.this,"DataSaved",Toast.LENGTH_SHORT).show();
                         boolean isInserted = mydb.inforData(
                                 RoadName.getText().toString(),
@@ -69,7 +72,11 @@ public class dashboard extends AppCompatActivity implements AdapterView.OnItemSe
                                 DistrictName.getText().toString(),
                                 StateName.getText().toString(),
                                 LandMark.getText().toString(),
+                                spinner.getSelectedItem().toString(),
                                 PavementType.getText().toString()
+
+
+
 
                         );
                         Intent i;
@@ -132,11 +139,15 @@ public class dashboard extends AppCompatActivity implements AdapterView.OnItemSe
     }
 
     @Override
+
+
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String text = parent.getItemAtPosition(position).toString();
+         text = parent.getItemAtPosition(position).toString();
         Toast.makeText(parent.getContext(),text, Toast.LENGTH_SHORT).show();
 
     }
+
+
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {

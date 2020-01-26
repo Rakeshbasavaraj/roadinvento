@@ -45,7 +45,7 @@ public class siginUp extends AppCompatActivity {
                     }
                 }
         );
-        
+
     }
 
     private void check() {
@@ -65,15 +65,15 @@ public class siginUp extends AppCompatActivity {
                 UserName.getText().toString(),
                 PhoneNumber.getText().toString(),
                 Password.getText().toString());
-    if(isInserted== true) {
-        onSignupSuccess(isInserted);
-    }
-    else
-    {
+        if(isInserted== true) {
+            onSignupSuccess(isInserted);
+        }
+        else
+        {
 
-        onSignUpFailed();
+            onSignUpFailed();
 
-    }
+        }
 
     }
 
@@ -82,12 +82,12 @@ public class siginUp extends AppCompatActivity {
 
 
 
-            Toast.makeText(getBaseContext(), "Registration successful", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Registration successful", Toast.LENGTH_LONG).show();
 
-            Intent i = new Intent(getApplicationContext(), login.class);
-            startActivity(i);
-            finish();
-        }
+        Intent i = new Intent(getApplicationContext(), login.class);
+        startActivity(i);
+        finish();
+    }
 
 
 
@@ -133,4 +133,3 @@ public class siginUp extends AppCompatActivity {
         return valid;
     }
 }
-

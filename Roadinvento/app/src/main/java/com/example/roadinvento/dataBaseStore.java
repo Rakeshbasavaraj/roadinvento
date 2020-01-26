@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.SpinnerAdapter;
 
 import androidx.annotation.Nullable;
 
@@ -34,7 +35,7 @@ public class dataBaseStore extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE Registration( PhoneNumber TEXT PRIMARY KEY,UserName TEXT,Password TEXT)");
-        db.execSQL("CREATE TABLE Information( RoadName TEXT PRIMARY KEY,Latitude_Longitude_StartPoint INTEGER,Latitude_Longitude_EndPoint TEXT ,AreaName TEXT,DistrictName TEXT ,StateName TEXT ,LandMark TEXT  ,PavementType TEXT)");
+        db.execSQL("CREATE TABLE Information( RoadName TEXT PRIMARY KEY,Latitude_Longitude_StartPoint TEXT,Latitude_Longitude_EndPoint TEXT,AreaName TEXT,DistrictName TEXT,StateName TEXT,LandMark TEXT ,ChainageSetting TEXT,PavementType TEXT)");
 
     }
 
@@ -82,7 +83,7 @@ public class dataBaseStore extends SQLiteOpenHelper {
 
     }
 
-    public boolean inforData( String RoadName, String  Latitude_Longitude_StartPoint, String Latitude_Longitude_EndPoint,String AreaName, String DistrictName, String StateName, String LandMark, String PavementType) {
+    public boolean inforData(String RoadName, String Latitude_Longitude_StartPoint, String Latitude_Longitude_EndPoint, String AreaName, String DistrictName, String StateName, String LandMark,String ChainageSetting, String PavementType ) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(I1, RoadName);
@@ -92,6 +93,7 @@ public class dataBaseStore extends SQLiteOpenHelper {
         contentValues.put(I5, DistrictName);
         contentValues.put(I6, StateName);
         contentValues.put(I7, LandMark);
+        contentValues.put(I8, ChainageSetting);
         contentValues.put(I9, PavementType);
         long result = db.insert(TINFO_Name, null, contentValues);
         if (result == -1)
@@ -106,11 +108,14 @@ public class dataBaseStore extends SQLiteOpenHelper {
         Cursor res = db.rawQuery("select * from Registration where PhoneNumber= ?", new String[]{PhoneNumber});
         return res;
     }
-    public boolean infoData( String RoadName, String  Latitude_Longitude_StartPoint, String Latitude_Longitude_EndPoint,String AreaName, String DistrictName, String StateName, String LandMark, String ChainageSetting, String PavementType)
+    public  Cursor Alldata()
     {
-
-        return false;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor ress = db.rawQuery("select * from Information",null);
+        return ress;
     }
+
+
 
 
 }

@@ -5,6 +5,8 @@
     android:background="@drawable/bg">
 
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,20 +16,7 @@
         android:gravity="center"
         android:layout_alignParentTop="true"
         android:layout_above="@id/input_group">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:text="WELCOME TO"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:text="ROAD INVENTO"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"/>
+
 
     </LinearLayout>
 
@@ -42,6 +31,27 @@
         android:layout_marginBottom="50dp"
         android:layout_alignParentBottom="true"
         android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="WELCOME TO ROAD INVENTO"
+            android:textColor="#000000"
+            android:textStyle="italic"
+            android:textColorLink="@color/colorPrimaryDark"
+            android:textSize="20sp"/>
+
+        <pl.droidsonroids.gif.GifImageView
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_weight="0.25"
+            android:src="@drawable/source"
+            />
+
 
 
         <EditText
@@ -50,7 +60,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_top"
             android:hint="PhoneNumber"
-            android:inputType="phone"
+            android:inputType="textPersonName"
             android:padding="15dp" />
 
         <EditText
